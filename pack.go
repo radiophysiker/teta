@@ -9,14 +9,19 @@ import (
 
 func Pack(s string) string {
 	var result strings.Builder
+	isRepeat := false
 	mapRune := make(map[rune]int)
 	for _, charCode := range s {
 		i, ok := mapRune[charCode]
 		if ok {
+			isRepeat = true
 			mapRune[charCode] = i + 1
 		} else {
 			mapRune[charCode] = 1
 		}
+	}
+	if !isRepeat {
+		return s
 	}
 	keys := make([]rune, 0, len(mapRune))
 	for k := range mapRune {
@@ -28,9 +33,7 @@ func Pack(s string) string {
 	for _, k := range keys {
 		result.WriteRune(k)
 		value := mapRune[k]
-		if value > 1 {
-			result.WriteString(strconv.Itoa(value))
-		}
+		result.WriteString(strconv.Itoa(value))
 	}
 	return result.String()
 }

@@ -11,9 +11,10 @@ func TestPack(t *testing.T) {
 		input    string
 		expected string
 	}{
-		{input: "aaaabccddddde", expected: "a4bc2d5e"},
-		{input: "abccd", expected: "abc2d"},
+		{input: "aaaabccddddde", expected: "a4b1c2d5e1"},
+		{input: "abccd", expected: "a1b1c2d1"},
 		{input: "abcd", expected: "abcd"},
+		{input: "baa", expected: "a2b1"},
 		{input: "cccccaabbb", expected: "a2b3c5"},
 		{input: "aaabbbcccccaaaaa", expected: "a8b3c5"},
 		{input: "", expected: ""},
@@ -21,8 +22,11 @@ func TestPack(t *testing.T) {
 		{input: "ЯЯЯБББддд", expected: "Б3Я3д3"},
 		{input: "ЯЯЯБББдддaa", expected: "a2Б3Я3д3"},
 		{input: "", expected: ""},
-		{input: "11", expected: "12"},
+		{input: "m11", expected: "12m1"},
+		{input: "zzzzcccUUUuuЯЯЯБББддд", expected: "U3c3u2z4Б3Я3д3"},
 		{input: "aaabbbccccc", expected: "a3b3c5"},
+		{input: "acb", expected: "acb"},
+		{input: "a", expected: "a"},
 		
 	}
 
